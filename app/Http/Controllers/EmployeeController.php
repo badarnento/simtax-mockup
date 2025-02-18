@@ -20,18 +20,18 @@ class EmployeeController extends Controller
         $query = Employee::select(['id', 'name', 'email', 'phone', 'position', 'department', 'salary', 'hire_date']);
 
         return response()->json(
-            $datatableService->getData($request, $query, function ($user, $number) {
-                $formattedAmount = 'Rp ' . number_format($user->salary, 2, ',', '.');
+            $datatableService->getData($request, $query, function ($employee, $number) {
+                $formattedAmount = 'Rp ' . number_format($employee->salary, 2, ',', '.');
                 return [
-                    'id'         => $user->id,
+                    'id'         => $employee->id,
                     'no'         => $number,
-                    'name'       => $user->name,
-                    'email'      => $user->email,
-                    'phone'      => $user->phone,
-                    'position'   => $user->position,
-                    'department' => $user->department,
+                    'name'       => $employee->name,
+                    'email'      => $employee->email,
+                    'phone'      => $employee->phone,
+                    'position'   => $employee->position,
+                    'department' => $employee->department,
                     'salary'     => $formattedAmount,
-                    'hire_date'  => Carbon::parse($user->hire_date)->format('d-m-Y'),
+                    'hire_date'  => Carbon::parse($employee->hire_date)->format('d-m-Y'),
                 ];
             }, Employee::$searchableColumns)
         );

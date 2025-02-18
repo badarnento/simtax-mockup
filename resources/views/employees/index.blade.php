@@ -25,7 +25,6 @@
 @yield('scripts')
 
 <!-- jQuery dan DataTables -->
-<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 <script>
     url = "{{ route('employees.listing') }}";
     jsonData = [{

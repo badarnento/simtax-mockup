@@ -4,14 +4,31 @@ namespace App\Http\Controllers;
 
 use App\Models\TaxType;
 use Illuminate\Http\Request;
+use App\Services\BaseDataTableService;
 
 class TaxTypeController extends Controller
 {
     public function index()
     {
-        $taxTypes = TaxType::all();
-        return view('tax_types.index', compact('taxTypes'));
+        return view('tax_types.index');
     }
+    
+    public function getListing(Request $request, BaseDataTableService $datatableService)
+    {
+        $query = TaxType::select(['id', 'name', 'description', 'rate']);
+        return response()->json(
+            $datatableService->getData($request, $query, function ($tax_type, $number) {
+                return [
+                    'id'          => $tax_type->id,
+                    'no'          => $number,
+                    'name'        => $tax_type->name,
+                    'description' => $tax_type->description,
+                    'rate'        => $tax_type->rate
+                ];
+            }, TaxType::$searchableColumns)
+        );
+    }
+
 
     public function create()
     {

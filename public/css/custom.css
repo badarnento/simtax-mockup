@@ -10,3 +10,7 @@
 #table_data_processing{
     background: transparent !important;
 }
+
+table.dataTable {
+    width: 100% !important;
+}

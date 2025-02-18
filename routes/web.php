@@ -3,10 +3,15 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
+use App\Http\Controllers\VendorController;
 use App\Http\Controllers\TaxTypeController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\TaxEntityController;
 use App\Http\Controllers\FinancialAccountController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\TaxLineController;
+use App\Models\TaxLine;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,21 +27,35 @@ Route::get('/', function () {
     return view('layouts/master');
 });
 
+Route::prefix('tax')->group(function () {
+    Route::get('pph-21/list', [TaxLineController::class, 'getListing'])->name('tax_line.listing');
+    Route::resource('pph-21', TaxLineController::class);
+});
 
+/* Master  */
+Route::prefix('master')->group(function () {
 
-Route::resource('master/tax-types', TaxTypeController::class);
-Route::resource('master/employees', EmployeeController::class);
-Route::resource('master/financial_accounts', FinancialAccountController::class);
-Route::resource('master/vendor', TaxEntityController::class);
+    /* Karyawan  */
+    Route::get('employees/list', [EmployeeController::class, 'getListing'])->name('employees.listing');
+    Route::resource('employees', EmployeeController::class);
 
-Route::get('/admin/employees', [UserController::class, 'index'])->name('master/employees.index');
-Route::get('/admin/employees/list', [EmployeeController::class, 'getListing'])->name('employees.listing');
+    /* Jenis Pajak  */
+    Route::get('tax-types/list', [TaxTypeController::class, 'getListing'])->name('tax-types.listing');
+    Route::resource('tax-types', TaxTypeController::class);
 
-Route::get('/admin/users', [UserController::class, 'index'])->name('admin/users.index');
-Route::get('/admin/users/list', [UserController::class, 'getListing'])->name('users.get');
+    /* Vendor  */
+    Route::get('vendor/list', [VendorController::class, 'getListing'])->name('vendor.listing');
+    Route::resource('vendor', VendorController::class);
+});
 
-Route::get('/admin/roles', [UserController::class, 'index'])->name('roles.index');
-Route::get('/admin/roles/list', [UserController::class, 'getUsers'])->name('roles.get');
+/* Jenis Pajak  */
+Route::prefix('admin')->group(function () {
 
+    /* Users  */
+    Route::get('users/list', [UserController::class, 'getListing'])->name('users.listing');
+    Route::resource('users', UserController::class);
 
-
+    /* Roles  */
+    Route::get('roles/list', [RoleController::class, 'getListing'])->name('roles.listing');
+    Route::resource('roles', RoleController::class);
+});

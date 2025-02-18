@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class TaxType extends Model
+class TaxType extends BaseModel
 {
-    use HasFactory;
 
     protected $fillable = ['name', 'description', 'rate'];
+
+    public static $searchableColumns = ['name', 'description'];
+
 
     public function transactions()
     {

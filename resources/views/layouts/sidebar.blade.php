@@ -5,7 +5,7 @@
                 <ul class="site-menu" data-plugin="menu">
                     <li class="site-menu-category">General</li>
                     <li class="site-menu-item">
-                        <a class="animsition-link" href="../index.html">
+                        <a class="animsition-link" href="/">
                             <i class="site-menu-icon md-view-dashboard" aria-hidden="true"></i>
                             <span class="site-menu-title">Dashboard</span>
                         </a>
@@ -18,7 +18,7 @@
                         </a>
                         <ul class="site-menu-sub">
                             <li class="site-menu-item">
-                                <a class="animsition-link" href="tax/pph-21">
+                                <a class="animsition-link" href="/tax/pph-21">
                                     <span class="site-menu-title">PPh 21</span>
                                 </a>
                             </li>
@@ -33,18 +33,18 @@
                         </a>
                         <ul class="site-menu-sub">
                             <li class="site-menu-item">
-                                <a class="animsition-link" href="master/employees">
+                                <a class="animsition-link" href="/master/employees">
                                     <span class="site-menu-title">Karyawan</span>
                                 </a>
                             </li>
                             <li class="site-menu-item">
                                 
-                                <a class="animsition-link" href="master/tax-type">
+                                <a class="animsition-link" href="/master/tax-types">
                                     <span class="site-menu-title">Jenis Pajak</span>
                                 </a>
                             </li>
                             <li class="site-menu-item">
-                                <a class="animsition-link" href="master/vendor">
+                                <a class="animsition-link" href="/master/vendor">
                                     <span class="site-menu-title">Vendor</span>
                                 </a>
                             </li>
@@ -63,12 +63,12 @@
                         </a>
                         <ul class="site-menu-sub">
                             <li class="site-menu-item">
-                                <a class="animsition-link" href="admin/users">
+                                <a class="animsition-link" href="/admin/users">
                                     <span class="site-menu-title">Users</span>
                                 </a>
                             </li>
                             <li class="site-menu-item">
-                                <a class="animsition-link" href="admin/roles">
+                                <a class="animsition-link" href="/admin/roles">
                                     <span class="site-menu-title">Roles</span>
                                 </a>
                             </li>

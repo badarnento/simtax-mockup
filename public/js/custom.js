@@ -19,11 +19,13 @@ function data_table(url, json) {
         },
         columns: json,
         scrollY: 500,
+        scrollX: 1500,
         scrollCollapse: true,
         scrollX: true,
         pageLength: 10,
         ordering: false,
-        bAutoWidth: true,
+        bAutoWidth: false,
+        autoWidth: true,
     });
 
     // Fungsi debounce untuk pencarian
@@ -55,6 +57,13 @@ function data_table(url, json) {
                 table.search("").draw();
             }
         });
+
+        table.columns.adjust().draw();
+
+        /* setTimeout(function () {
+            table.columns.adjust().draw();
+            
+        }, 1000); */
 
     // Konfigurasi lainnya
     $("#table_data_wrapper .row div")

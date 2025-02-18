@@ -3,14 +3,14 @@
 
 @section('content')
 <div class="container">
-    <h2>Users List</h2>
+    <h2>Jenis Pajak</h2>
     <table class="table table-bordered table-striped table-responsive w-full" cellspacing="0" id="table_data">
         <thead>
             <tr>
               <th>No.</th>
-              <th class ="text-center"> Name</th>
-              <th class ="text-center">Email</th>
-              <th class ="text-center">Created At</th>
+              <th class ="text-center">Name</th>
+              <th class ="text-center">Description</th>
+              <th class ="text-center">Rate</th>
             </tr>
           </thead>
     </table>
@@ -26,12 +26,12 @@
 <script>
 
 
-    url = "{{ route('users.listing') }}";
+    url = "{{ route('tax-types.listing') }}";
     jsonData = [
                 { "data": "no", "width":"10px", "class":"text-center"},
                 { "data": "name", "width":"200px", "class":"text-left"},
-                { "data": "email", "width":"100px"},
-                { "data": "created_at", "width":"100px", "class":"text-center"}
+                { "data": "description", "width":"100px"},
+                { "data": "rate", "width":"100px", "class":"text-center"}
             ];
 
     data_table(url,jsonData);
