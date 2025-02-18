@@ -5,22 +5,28 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Services\BaseDataTableService;
 
 class UserController extends Controller
 {
     public function index()
     {
-        return view('user');
+        return view('users.index');
     }
-
-    public function getUsers()
+    
+    public function getListing(Request $request, BaseDataTableService $datatableService)
     {
-        $users = User::select(['id', 'name', 'email', 'created_at'])->get();
-        $users->transform(function ($user) {
-            $user->created_at = Carbon::parse($user->created_at)->format('d-m-Y');
-            return $user;
-        });
-        
-        return response()->json(['data' => $users]);
+        $query = User::select(['id', 'name', 'email', 'created_at']);
+        return response()->json(
+            $datatableService->getData($request, $query, function ($user, $number) {
+                return [
+                    'id'         => $user->id,
+                    'no'         => $number,
+                    'name'       => $user->name,
+                    'email'      => $user->email,
+                    'created_at' => Carbon::parse($user->created_at)->format('d-m-Y'),
+                ];
+            }, User::$searchableColumns)
+        );
     }
 }
